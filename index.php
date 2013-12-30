@@ -121,8 +121,9 @@
 
     <div id="highscoreslist">
         <div id="gameinfo">
-            <span id="gamename"><?php echo $game->gameinfo['name']?></span><br/>
-            <span id="author_name">Made by <i><?php echo $game->gameinfo['author']?></i>, <i><?php echo $time->niceShort($game->gameinfo['modified']); ?></i> </span>
+            <span class="gamename"><?php echo $game->gameinfo['name']?></span><br/>
+            <span class="author_name">Made by <i><?php echo $game->gameinfo['author']?></i></span>
+			on <span class="modified_date"><i><?php echo $time->niceShort($game->gameinfo['modified_date']); ?></i> </span>
         </div>
 
 		<div class="CSSTableGenerator" >
@@ -168,8 +169,8 @@
 
     
     <div id="footer">
-        Made by <a href="mailto: whachoe@gmail.com">Jo Giraerts</a> (c) 2010.  
-        <small>Based on <a href="http://www.members.shaw.ca/gf3/circle-cat/zcircle-the-cat.swf">this</a></small>.
+        Made by <a class="whiteurl" href="mailto: whachoe+catchthecat@gmail.com">Jo Giraerts</a> (c) 2010.<br/>
+        <small>Based on <a class="whiteurl" href="http://www.members.shaw.ca/gf3/circle-cat/zcircle-the-cat.swf">this</a></small>.
     </div>
     </body>
 </html>    

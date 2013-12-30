@@ -171,8 +171,8 @@ var strategies = new Array(
 var won = false;
 var move_count = 0;
 var prev_cat_coords = null;
-var tmp_path = null;
-var strategy_index = 2;
+var tmp_path = [];
+var strategy_index = 1;
 var lost = false;
 
 // document.onload-routine
@@ -415,7 +415,7 @@ function findShortestPath(x,y,dir)
             && board.field[surround[dir][1]][surround[dir][0]] == POLY_TYPE_EMPTY) {
             return findShortestPath(surround[dir][0], surround[dir][1], dir);
         } else {
-            tmp_path = null;
+            tmp_path = [];
             return tmp_path;
         }
     }
