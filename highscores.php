@@ -9,7 +9,7 @@ class Highscores {
 
     function get_highscores($id)
     {
-        return $this->db->highscores->find(array('game_id' => $id))->sort(array("score" => 1, "date" => 1))->limit(10);
+        return $this->db->highscores->find(array('game_id' => $id))->sort(array("score" => 1, "date" => -1))->limit(10);
     }
 
     function save_highscore($id, $name, $score)
