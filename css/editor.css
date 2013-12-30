@@ -1,0 +1,10 @@
+body {font-family: Arial, Verdana, Helvetica, sans-serif;}
+#mainscreen {margin-left: 30px; width: 700px}
+label {margin-right: 10px; margin-bottom: 5px; display: inline}
+legend {font-weight: bold; font-size: 16px}
+input {margin-top: 5px}
+
+#instructions {background-color: #cfcfcf; padding: 5px; width: 700px}
+#gameparamsdiv {width: 700px}
+#drawprimitives {margin-top: 20px; width: 700px}
+

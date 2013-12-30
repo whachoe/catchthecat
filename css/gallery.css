@@ -1,0 +1,8 @@
+.small_board {width: 160px; height: 120px; margin-left: 10px; float: left}
+.gamefiche {border-bottom: 1px solid black; width: 360px; height: 120px}
+.gamefiche_info {float: left;}
+.gamefiche_name {font-size: 16px;}
+.gamefiche_author {font-size: 8px;margin-bottom: 10px}
+.gamefiche_author span {font-size: 12px}
+a.playbutton {font-size: 24px; text-decoration: none; color: green; text-align: center; margin: 20px}
+.gamefiche_date {font-size: 8px; font-style: italic; margin-top: 20px}

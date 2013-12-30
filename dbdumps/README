@@ -1,0 +1,2 @@
+# import like this:
+mongoimport --drop -d catchthecat -c games --file ./games.mongo
