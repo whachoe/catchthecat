@@ -4,7 +4,7 @@ body {
 }
 
 .logo {
-	background: url('/catchthecat/img/black-running-cat2.gif') no-repeat;
+	background: url('../img/black-running-cat2.gif') no-repeat;
 	margin-left: 10px;
 	padding-left: 0px;
 	padding-top: 80px;
