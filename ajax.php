@@ -3,6 +3,7 @@
     include "games.php";
 
 	error_reporting(E_ERROR);
+	session_start();
 
     function returnJson($data)
     {
@@ -41,7 +42,7 @@
 
         case 'logscore':
             if ($_REQUEST['win'] == 'true') {
-				$highscoresClass->save_highscore($_REQUEST['game_id'], 'unknown', $_REQUEST['score']);
+				$highscoresClass->save_highscore($_REQUEST['game_id'], 'unknown', $_REQUEST['score'], $_REQUEST['field']);
                 returnJson('1');
             } else {
 				$highscoresClass->save_lost_game($_REQUEST['game_id'], $_REQUEST['score']);
@@ -51,6 +52,7 @@
 
         case 'loadgame':
             $game = new game($_REQUEST['game_id']);
+
             returnJson($game->gameinfo);
             break;
 

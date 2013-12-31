@@ -20,24 +20,6 @@ var board = {
     "colors" : null,
 
     // Methods
-    "randomGreenBlocks" : function (level) {
-        // Place random green blocks on the field
-        this.width = this.field[0].length;
-        this.height = this.field.length;
-
-        for (i=0; i<board.start_blocks; i++) {
-            x = Math.floor(Math.random()*board.width);
-            y = Math.floor(Math.random()*board.height);
-
-            while (board.field[y][x] != POLY_TYPE_EMPTY || (x == board.cat_start_x && y == board.cat_start_y)) {
-                x = Math.floor(Math.random()*board.width);
-                y = Math.floor(Math.random()*board.height);
-            }
-
-            board.field[y][x] = POLY_TYPE_CLICKED;
-        }
-    },
-
     "drawField" : function () {
         this.width = this.field[0].length;
         this.height = this.field.length;
@@ -114,12 +96,23 @@ var strategies = new Array(
         var min_distance = Math.max(board.width,board.height);
 
         for (i=0; i<coords.length; i++) {
-            x = coords[i][0];
-            y = coords[i][1];
-            x_right = board.width - x -1;
-            y_bottom = board.height - y -1;
-            dist = Math.min(x,y,x_right,y_bottom);
+            var x = coords[i][0];
+            var y = coords[i][1];
+            var x_right = board.width - x -1;
+            var y_bottom = board.height - y -1;
+            var dist = Math.min(x,y,x_right,y_bottom);
+            var vector = [x-prev_cat_coords[0], y-prev_cat_coords[1]];
+
+            // Favor the previous direction
+            if (vector[0] == prev_vector[0] && vector[1] == prev_vector[1])
+                dist--;
+
+            // Penalty on previous spot: do not go back readily.
+            if (coords == prev_cat_coords)
+                dist = dist + 2;
+
             if (dist < min_distance) {
+
                 min_distance = dist;
                 min_distance_coord = coords[i];
             }
@@ -170,10 +163,11 @@ var strategies = new Array(
 // Global variables
 var won = false;
 var move_count = 0;
-var prev_cat_coords = null;
+var prev_cat_coords = [board.cat_start_x, board.cat_start_y];
+var prev_vector = [0,0];
 var tmp_path = [];
 var strategy_index = 1;
-var lost = false;
+
 
 // document.onload-routine
 function Init()
@@ -181,7 +175,7 @@ function Init()
     SVGDocument = document.getElementById('catchthecatsvg').ownerDocument;
     SVGRoot = SVGDocument.documentElement;
 
-    board.randomGreenBlocks(1);
+//    board.randomGreenBlocks();
     board.drawField();
 
     drawCat(board.cat_start_x,board.cat_start_y, true);
@@ -377,6 +371,7 @@ function moveCat()
     if (new_coords) {
 //            console.log("Moving cat to: "+new_coords[0]+','+new_coords[1]);
         drawCat(new_coords[0], new_coords[1]);
+        prev_vector = [new_coords[0] - cat_i, new_coords[1] - cat_j];
         prev_cat_coords = [cat_i,cat_j];
     } else {
         parent.checkHighscores(move_count);

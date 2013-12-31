@@ -1,7 +1,11 @@
 <?php
 class game
 {
-    public $gameinfo = null;
+	const POLY_TYPE_WHITESPACE = 0;
+	const POLY_TYPE_EMPTY = 1;
+	const POLY_TYPE_CLICKED = 2;
+
+	public $gameinfo = null;
     
     function __construct($id)
     {
@@ -42,7 +46,12 @@ class game
         }
         $info['_id'] = (string) $info['_id'];
         $this->gameinfo = $info;
-        
+
+		$this->randomGreenBlocks();
+
+		// Save it in the session so we can later on check if the user has actually won
+		$_SESSION['field'] = $this->fieldToArray();
+
         return $this->gameinfo;
     }
 
@@ -74,4 +83,32 @@ class game
     </script>
 <?php
     }
+
+	private function randomGreenBlocks()
+	{
+		$board = $this->gameinfo;
+
+		$width = count($board['field'][0]) - 1;
+        $height = count($board['field']) - 1;
+
+        for ($i=0; $i<$board['start_blocks']; $i++) {
+			do {
+				$x = floor(rand(0, $width));
+				$y = floor(rand(0, $height));
+			} while ($board['field'][$y][$x] != self::POLY_TYPE_EMPTY || ($x == $board['cat_start_x'] && $y == $board['cat_start_y']));
+
+			$this->gameinfo['field'][$y][$x] = self::POLY_TYPE_CLICKED;
+        }
+    }
+
+	private function fieldToArray() {
+		$array = array();
+		foreach ($this->gameinfo['field'] as $line) {
+			foreach ($line as $cell) {
+				$array[] = $cell;
+			}
+		}
+
+		return $array;
+	}
 }

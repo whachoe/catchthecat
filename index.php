@@ -4,12 +4,14 @@
     include_once 'time.php';
 
 	error_reporting(E_ERROR);
+	session_start();
 
     if ($_POST['action'] == "sendhighscore") {
         if (is_numeric($_POST['score']) && $_POST['score'] > 0) {
             if ($_POST['highscore_name']) {
 				$highscoresClass = new Highscores();
-                $highscoresClass->save_highscore($_POST['game_id'], $_POST['highscore_name'], $_POST['score']);
+
+                $highscoresClass->save_highscore($_POST['game_id'], $_POST['highscore_name'], $_POST['score'], $_POST['field']);
                 header("Location: index.php?game_id=".$_POST['game_id']);
                 die;
             }
@@ -63,10 +65,18 @@
                     if (data.highscore != undefined && data.highscore == 1) {
                         $("#highscore_hidden").val(score);
                         $("#highscore_game_id").val('<?php echo $gameid ?>');
+						$("#highscore_field").val(document.getElementById('iframecat').contentWindow.board.field);
                         $("#highscoresform").jqmShow();
                     } else {
                         // just log the score as an anonymous user
-                        $.getJSON('ajax.php', {'action': 'logscore', 'score': score, 'win': true, 'game_id': '<?php echo $gameid ?>'}, function (data2) {
+						var payload = {
+							'action': 'logscore',
+							'score': score,
+							'win': true,
+							'game_id': '<?php echo $gameid ?>',
+							'field': document.getElementById('iframecat').contentWindow.board.field
+						}
+                        $.getJSON('ajax.php', payload, function (data2) {
                             // Reload the page
                             window.location.reload();
                         });
@@ -94,6 +104,7 @@
             <input type="hidden" name="action" value="sendhighscore" />
             <input id="highscore_hidden" type="hidden" name="score" value="0" />
             <input id="highscore_game_id" name="game_id" type="hidden" value="" />
+			<input id="highscore_field" name="field" type="hidden" value="" />
             <h3>You got a highscore!</h3>
             <label for="highscore_name">Your Name:</label>
             <input type="text" id="highscore_name" name="highscore_name" value="" size="32"/>
