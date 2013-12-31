@@ -8,12 +8,9 @@ body {
 	margin-left: 10px;
 	padding-left: 0px;
 	padding-top: 80px;
-	float: left
 }
 
 #menubar {
-	float: left;
-	padding-top: 60px
 }
 
 #highscoreslist {
@@ -85,7 +82,6 @@ span.modified_date {
 	margin-right: auto;
 	padding: 0;
 	padding-right: 0px;
-	width: 238px;
 	height: 40px;
 	list-style-type: none;
 	-webkit-border-radius: 10px;

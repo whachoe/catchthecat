@@ -1,5 +1,5 @@
 <?php
-    include_once 'highscores.php';
+   include_once 'highscores.php';
     include_once 'games.php';
     include_once 'time.php';
 
