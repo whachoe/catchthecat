@@ -10,7 +10,9 @@
                 <script type="text/javascript" src="js/json.js"></script>
                 
                 <link rel="stylesheet" href="css/jqModal.css" type="text/css" media="screen" />
+				<link rel="stylesheet" href="css/catchthecat.css" type="text/css" media="screen" />
                 <link rel="stylesheet" href="css/editor.css" type="text/css" media="screen" />
+
                 <script type="text/javascript">
                     var board = null; // we are gonna save the board into this var
                     
@@ -117,7 +119,7 @@
                 </script>
     </head>
     <body>
-        <h1>Catch The Cat - EDITOR</h1>
+		<?php include_once 'menu.php'; ?>
 
         <div id="game_saved_success" class="jqmWindow" style="width: 300px; height: 200px;">
             <span class="allgood"> Game saved succesfully!</span> <br/>
@@ -163,12 +165,12 @@
                 <br/>
                 <input type="button" id="savebutton" name="save" value="Save" />
             </form>
+			<br/>
         <div style="clear: both; float: none"></div>
 
-        <div id="footer">
-            Made by <a href="mailto: whachoe@gmail.com">Jo Giraerts</a> (c) 2010.
-            <small>Based on <a href="http://www.members.shaw.ca/gf3/circle-cat/zcircle-the-cat.swf">this</a></small>.
-        </div>
-        </div>
+		</div>
+
+		<?php include_once 'footer.php'; ?>
+
     </body>
 </html>

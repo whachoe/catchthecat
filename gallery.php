@@ -27,7 +27,7 @@
     </head>
 
 <body>
-<h1>Game Gallery</h1>
+<?php include_once 'menu.php'; ?>
 <p>Here you can browse through all the games that are made by players.</p>
 
 <?php
@@ -52,6 +52,9 @@ while ($data = $cursor->getNext()) {
 <?php
 }
 ?>
+<br/>
+
+<?php include_once 'footer.php'; ?>
 </body>
 </html>
 

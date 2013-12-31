@@ -114,12 +114,7 @@
         </form>
     </div>
 
-	<h3 class="logo">Catch The Cat</h3>
-	<ul id="menu_wrap" class="l_Blue">
-		<li class="button"><a href="gallery.php">Game Gallery</a></li>
-		<li class="button"><a href="editor.php">Make your Own</a></li>
-	</ul>
-	<div style="clear: both"></div>
+	<?php include_once 'menu.php'; ?>
 
 	<div id="iframediv" style="float: left; margin-left: 20px; height: 600px; width: 800px">
 
@@ -178,10 +173,6 @@
     </div>
     <div style="clear: both; float: none"></div>
 
-    
-    <div id="footer">
-        Made by <a class="whiteurl" href="mailto: whachoe+catchthecat@gmail.com">Jo Giraerts</a> (c) 2010.<br/>
-        <small>Based on <a class="whiteurl" href="http://www.members.shaw.ca/gf3/circle-cat/zcircle-the-cat.swf">this</a></small>.
-    </div>
+	<?php include_once 'footer.php'; ?>
     </body>
 </html>    

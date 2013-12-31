@@ -61,7 +61,6 @@ class Highscores {
 			if ($posted_field_array[$i] != $str_field[$i])
 				$differences++;
 		}
-		file_put_contents("/tmp/catchthecat.log", $differences.' - '.$moves, FILE_APPEND);
 
 		if ($differences == $moves) return true;
 
