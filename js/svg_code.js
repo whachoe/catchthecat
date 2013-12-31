@@ -127,7 +127,8 @@ var strategies = new Array(
             if (coords == prev_cat_coords)
                 dist = dist + 2;
 
-            dist = dist + board.visits[y][x];
+            // Penalize places we visitted already
+            dist = dist + board.visits[y][x]*2;
 
             if (dist < min_distance) {
 
