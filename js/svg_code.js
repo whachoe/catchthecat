@@ -19,6 +19,8 @@ var board = {
     "start_blocks": 4,
     "colors" : null,
 
+    "visits": this.field,   // here we are going to count the times we moved into each cell
+
     // Methods
     "drawField" : function () {
         this.width = this.field[0].length;
@@ -75,6 +77,18 @@ var board = {
         board.name = boarddata.name;
         board.author = boarddata.author;
         board.modified_date = boarddata.modified_date;
+
+        // Initialize the visits-array
+        board.visits = new Array();
+        var width = board.field[0].length;
+        var height = board.field.length;
+        for (var j=0; j < height; j++) {
+            var temp = new Array();
+            for (var i=0; i < width; i++) {
+                temp.push(0);
+            }
+            board.visits.push(temp);
+        }
     }
 }
 
@@ -112,6 +126,8 @@ var strategies = new Array(
             // Penalty on previous spot: do not go back readily.
             if (coords == prev_cat_coords)
                 dist = dist + 2;
+
+            dist = dist + board.visits[y][x];
 
             if (dist < min_distance) {
 
@@ -254,6 +270,9 @@ function DrawPoly(cx, cy, sides, edge, orient, onclick, id)
 // Put the cat somewhere on the board
 function drawCat(i,j,scale)
 {
+    // Record our visit
+    board.visits[j][i]++;
+
     coords = get_coords_cat(i,j);
 
     cat_svg = document.getElementById('cat_svg');
