@@ -92,6 +92,8 @@ var strategies = new Array(
     // strategy_shortest_to_edge: typical min-max 2d routine
     function (coords)
     {
+        coords = shuffle(coords);
+
         var min_distance_coord = null;
         var min_distance = Math.max(board.width,board.height);
 
