@@ -124,10 +124,10 @@ var strategies = new Array(
                 dist--;
 
             // Penalty on previous spot: do not go back readily.
-            if (coords == prev_cat_coords)
-                dist = dist + 2;
+//            if (coords == prev_cat_coords)
+//                dist = dist + 2;
 
-            // Penalize places we visitted already
+            // Penalize places we visited already
             dist = dist + board.visits[y][x]*2;
 
             if (dist < min_distance) {
